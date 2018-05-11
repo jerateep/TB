@@ -1,0 +1,11 @@
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\bin\Debug\netcoreapp2.0\TB.deps.json
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\bin\Debug\netcoreapp2.0\TB.runtimeconfig.json
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\bin\Debug\netcoreapp2.0\TB.runtimeconfig.dev.json
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\bin\Debug\netcoreapp2.0\TB.dll
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\bin\Debug\netcoreapp2.0\TB.pdb
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.csprojResolveAssemblyReference.cache
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.csproj.CoreCompileInputs.cache
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.AssemblyInfoInputs.cache
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.AssemblyInfo.cs
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.dll
+C:\Users\jerateep.s\Desktop\GitHub\TB\TB\obj\Debug\netcoreapp2.0\TB.pdb

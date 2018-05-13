@@ -8,8 +8,7 @@ namespace TB.Models
     public class TBL_MS_CHANGWAT
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string CHANGWAT_ID { get; set; }
         public string COUNTRY_ID { get; set; }
         public string CHANGWAT_NAME_TH { get; set; }

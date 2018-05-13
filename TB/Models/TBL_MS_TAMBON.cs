@@ -8,8 +8,8 @@ namespace TB.Models
     {
         private decimal _LATITUDE, _LONGTITUDE;
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string TAMBON_ID { get; set; }
         public string AMPUR_ID { get; set; }
         public string TAMBON_NAME_TH { get; set; }

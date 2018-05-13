@@ -9,8 +9,7 @@ namespace TB.Models
     {
         private decimal _LATITUDE, _LONGTITUDE;
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string AMPUR_ID { get; set; }
         public string CHANGWAT_ID { get; set; }
         public string AMPUR_NAME_TH { get; set; }

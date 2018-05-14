@@ -13,6 +13,7 @@ namespace TB.Models
             var context = new DBContext(
                 serviceProvider.GetRequiredService<DbContextOptions<DBContext>>());
             context.Database.EnsureCreated();
+            //context.Database.Migrate();
             context.SaveChanges();
         }
     }

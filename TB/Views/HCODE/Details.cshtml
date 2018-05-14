@@ -1,0 +1,229 @@
+﻿@model TB.Models.TBL_MS_HOSP_CODE
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_MS_HOSP_CODE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ORG_ID_9)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ORG_ID_9)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ORG_LEVEL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ORG_LEVEL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ORG_TYPE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ORG_TYPE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ORG_TYPE_NHSO)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ORG_TYPE_NHSO)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME_TH)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NAME_TH)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME_EN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NAME_EN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDR)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ADDR)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CHANGWAT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CHANGWAT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AMPUR)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AMPUR)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TAMBON)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TAMBON)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BED)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BED)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTMENT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTMENT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TEL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FAX)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NHSO_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NHSO_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ODPC_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ODPC_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PHO_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PHO_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SSO_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SSO_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_MDR_TREAT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_MDR_TREAT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_CULTURE_TREAT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_CULTURE_TREAT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DST_TREAT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_DST_TREAT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_MOLECULAR_TREAT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_MOLECULAR_TREAT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LATITUDE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LATITUDE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LONGTITUDE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LONGTITUDE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_CUL_SOLID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_CUL_SOLID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_CUL_LIQUID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_CUL_LIQUID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DST_SOLID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_DST_SOLID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DST_LIQUID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_DST_LIQUID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_MOL_LPA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_MOL_LPA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_MOL_XPERT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_MOL_XPERT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_NHSO_ORG)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_NHSO_ORG)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_OUTOF_TBCM)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IS_OUTOF_TBCM)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.hmain_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.hmain_id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ORG_ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

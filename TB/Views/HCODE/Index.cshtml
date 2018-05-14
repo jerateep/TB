@@ -1,0 +1,236 @@
+﻿@model IEnumerable<TB.Models.TBL_MS_HOSP_CODE>
+
+@{
+    ViewData["Title"] = "Hospital";
+    Layout = "_Layout";
+}
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ORG_ID_9)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ORG_LEVEL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ORG_TYPE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ORG_TYPE_NHSO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME_TH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME_EN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ADDR)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MU)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CHANGWAT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AMPUR)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TAMBON)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BED)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DEPARTMENT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FAX)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NHSO_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ODPC_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PHO_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SSO_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_MDR_TREAT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_CULTURE_TREAT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_DST_TREAT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_MOLECULAR_TREAT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.STATUS)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LATITUDE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LONGTITUDE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_CUL_SOLID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_CUL_LIQUID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_DST_SOLID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_DST_LIQUID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_MOL_LPA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_MOL_XPERT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_NHSO_ORG)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IS_OUTOF_TBCM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.hmain_id)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ORG_ID_9)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ORG_LEVEL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ORG_TYPE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ORG_TYPE_NHSO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME_TH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME_EN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ADDR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CHANGWAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AMPUR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TAMBON)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BED)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEPARTMENT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TEL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FAX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHSO_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ODPC_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PHO_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSO_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_MDR_TREAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_CULTURE_TREAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_DST_TREAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_MOLECULAR_TREAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.STATUS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LATITUDE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LONGTITUDE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_CUL_SOLID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_CUL_LIQUID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_DST_SOLID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_DST_LIQUID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_MOL_LPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_MOL_XPERT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_NHSO_ORG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_OUTOF_TBCM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hmain_id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ORG_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ORG_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ORG_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

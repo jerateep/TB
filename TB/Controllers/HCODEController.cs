@@ -49,5 +49,12 @@ namespace TB.Controllers
             return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
             //return Json(new { data = q });
         }
+
+        [HttpGet]
+        public IActionResult Save(string id)
+        {
+            var v = _context.TBL_MS_HOSP_CODE.Where(a => a.ORG_ID == id).FirstOrDefault();
+            return View(v);
+        }
     }
 }

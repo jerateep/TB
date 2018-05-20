@@ -82,8 +82,8 @@
                     <th>iS_NHSO_ORG</th>
                     <th>iS_OUTOF_TBCM</th>
                     <th>hmain_id</th>
-                    @*<th>Edit</th>
-                    <th>Delete</th>*@
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
         </table>
@@ -138,8 +138,17 @@
                 { data: "iS_MOL_XPERT", "name": "iS_MOL_XPERT", "autowidth": true },
                 { data: "iS_NHSO_ORG", "name": "iS_NHSO_ORG", "autowidth": true },
                 { data: "iS_OUTOF_TBCM", "name": "iS_OUTOF_TBCM", "autowidth": true },
-                { data: "hmain_id", "name": "hmain_id", "autowidth": true }
-
+                { data: "hmain_id", "name": "hmain_id", "autowidth": true },
+                {
+                    "data": "ORG_ID", "width": "50px", "render": function (data) {
+                        return '<a class="popup" href="/hcode/save/' + data + '">Edit</a>';
+                    }
+                },
+                {
+                    "data": "ORG_ID", "width": "50px", "render": function (data) {
+                        return '<a class="popup" href="/hcode/delete/' + data + '">Delete</a>';
+                    }
+                }
             ]
         })
     })

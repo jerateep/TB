@@ -19,9 +19,10 @@ namespace TB.Controllers
         }
 
         // GET: HCODE
-        public async Task<IActionResult> GetHosp()
+        public IActionResult GetHosp()
         {
-            return Json(await _context.TBL_MS_HOSP_CODE.ToListAsync());
+            var s =  _context.TBL_MS_HOSP_CODE.ToList();
+            return Json(new { data = s});
         }
         public async Task<IActionResult> Index()
         {

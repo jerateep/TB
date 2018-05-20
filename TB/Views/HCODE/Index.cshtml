@@ -1,276 +1,111 @@
-﻿@model IEnumerable<TB.Models.TBL_MS_HOSP_CODE>
+﻿@*@model IEnumerable<TB.Models.TBL_MS_HOSP_CODE>*@
 
 @{
     ViewData["Title"] = "Hospital";
-    Layout = "_Layout";
+    Layout = null;
 }
-<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/bower_components/Datatables/css/dataTables.bootstrap.min.css" />
 </head>
 <body>
-    <div style="width:400px; margin:0 auto">
-        <table id="A">
+    <div style="width:90%;margin:0 auto;">
+        <table id="hTable" class="display">
             <thead>
                 <tr>
                     <th>ORG_ID</th>
                     <th>ORG_ID_9</th>
+                    <th>orG_LEVEL</th>
+                    <th>orG_TYPE</th>
+                    <th>orG_TYPE_NHSO</th>
                     <th>NAME_TH</th>
+                    <th>namE_EN</th>
+                    <th>addr</th>
+                    <th>mu</th>
+                    <th>changwat</th>
+                    <th>ampur</th>
+                    <th>tambon</th>
+                    <th>bed</th>
+                    <th>department</th>
+                    <th>tel</th>
+                    <th>fax</th>
+                    <th>nhsO_ID</th>
+                    <th>OPDC</th>
+                    <th>phO_ID</th>
+                    <th>ssO_ID</th>
+                    <th>iS_MDR_TREAT</th>
+                    <th>iS_CULTURE_TREAT</th>
+                    <th>iS_DST_TREAT</th>
+                    <th>iS_MOLECULAR_TREAT</th>
+                    <th>status</th>
+                    <th>latitude</th>
+                    <th>longtitude</th>
+                    <th>iS_CUL_SOLID</th>
+                    <th>iS_CUL_LIQUID</th>
+                    <th>iS_DST_SOLID</th>
+                    <th>iS_DST_LIQUID</th>
+                    <th>iS_MOL_LPA</th>
+                    <th>iS_MOL_XPERT</th>
+                    <th>iS_NHSO_ORG</th>
+                    <th>iS_OUTOF_TBCM</th>
+                    <th>hmain_id</th>
                 </tr>
             </thead>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var oTable = $('#A').DataTable({
-                "ajax": {
-                    "url": '/HCODE/GetHosp',
-                    "type": "get",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "ORG_ID", "autoWidth": true },
-                    { "data": "ORG_ID_9", "autoWidth": true },
-                    { "data": "NAME_TH", "autoWidth": true }
-                ]
-            })
-        })
-    </script>
 </body>
 </html>
-
-
-
-    @*<table class="table">
-            <thead>
-                <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ORG_ID_9)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ORG_LEVEL)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ORG_TYPE)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ORG_TYPE_NHSO)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NAME_TH)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NAME_EN)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ADDR)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.MU)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CHANGWAT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.AMPUR)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TAMBON)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.BED)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DEPARTMENT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TEL)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FAX)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NHSO_ID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ODPC_ID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PHO_ID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SSO_ID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_MDR_TREAT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_CULTURE_TREAT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_DST_TREAT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_MOLECULAR_TREAT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.STATUS)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.LATITUDE)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.LONGTITUDE)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_CUL_SOLID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_CUL_LIQUID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_DST_SOLID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_DST_LIQUID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_MOL_LPA)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_MOL_XPERT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_NHSO_ORG)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IS_OUTOF_TBCM)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.hmain_id)
-                        </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ORG_ID_9)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ORG_LEVEL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ORG_TYPE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ORG_TYPE_NHSO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NAME_TH)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NAME_EN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ADDR)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MU)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CHANGWAT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AMPUR)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TAMBON)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BED)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DEPARTMENT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TEL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FAX)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NHSO_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ODPC_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PHO_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SSO_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_MDR_TREAT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_CULTURE_TREAT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_DST_TREAT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_MOLECULAR_TREAT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.STATUS)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LATITUDE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LONGTITUDE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_CUL_SOLID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_CUL_LIQUID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_DST_SOLID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_DST_LIQUID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_MOL_LPA)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_MOL_XPERT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_NHSO_ORG)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IS_OUTOF_TBCM)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.hmain_id)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ORG_ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ORG_ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ORG_ID">Delete</a>
-                    </td>
-                </tr>
-        }
-            </tbody>
-        </table>*@
+<script>
+    $(document).ready(function () {
+        var oTable = $('#hTable').DataTable({
+            "ajax": {
+                "url": '/hcode/gethosp',
+                "type": "get",
+                "datatype": "json"
+            },
+            "columns": [
+                { data: "orG_ID", autowidth: true, autowidth: true },
+                { data: "orG_ID_9", autowidth: true },
+                { data: "orG_LEVEL", autowidth: true },
+                { data: "orG_TYPE", autowidth: true },
+                { data: "orG_TYPE_NHSO", autowidth: true },
+                { data: "namE_TH", autowidth: true },
+                { data: "namE_EN", autowidth: true },
+                { data: "addr", autowidth: true },
+                { data: "mu", autowidth: true },
+                { data: "changwat", autowidth: true },
+                { data: "ampur", autowidth: true },
+                { data: "tambon", autowidth: true },
+                { data: "bed", autowidth: true },
+                { data: "department", autowidth: true },
+                { data: "tel", autowidth: true },
+                { data: "fax", autowidth: true },
+                { data: "nhsO_ID", autowidth: true },
+                { data: "odpC_ID", autowidth: true },
+                { data: "phO_ID", autowidth: true },
+                { data: "ssO_ID", autowidth: true },
+                { data: "iS_MDR_TREAT", autowidth: true },
+                { data: "iS_CULTURE_TREAT", autowidth: true },
+                { data: "iS_DST_TREAT", autowidth: true },
+                { data: "iS_MOLECULAR_TREAT", autowidth: true },
+                { data: "status", autowidth: true },
+                { data: "latitude", autowidth: true },
+                { data: "longtitude", autowidth: true },
+                { data: "iS_CUL_SOLID", autowidth: true },
+                { data: "iS_CUL_LIQUID", autowidth: true },
+                { data: "iS_DST_SOLID", autowidth: true },
+                { data: "iS_DST_LIQUID", autowidth: true },
+                { data: "iS_MOL_LPA", autowidth: true },
+                { data: "iS_MOL_XPERT", autowidth: true },
+                { data: "iS_NHSO_ORG", autowidth: true },
+                { data: "iS_OUTOF_TBCM", autowidth: true },
+                { data: "hmain_id", autowidth: true }
+            ]
+        })
+    })
+</script>

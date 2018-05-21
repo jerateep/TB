@@ -2,154 +2,143 @@
 
 @{
     ViewData["Title"] = "Hospital";
-    Layout = null;
+    Layout = "_Layout";
 }
-<html>
-<head>
-
-    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/jquery.js"></script>
-    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/bower_components/Datatables/css/dataTables.bootstrap.min.css" />
-    <style>
-        #htable {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-            #htable td, #htable th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-
-            #htable tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
-
-            #htable tr:hover {
-                background-color: #ddd;
-            }
-
-            #htable th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #ffd800;
-                color: black;
-            }
-    </style>
-</head>
-<body>
-    <div style="width:90%;margin:0 auto;">
-        <table id="hTable" class="display">
-            <thead>
+<div>
+        <table>
+            <tbody>
                 <tr>
-                    <th>ORG_ID</th>
-                    <th>ORG_ID_9</th>
-                    <th>orG_LEVEL</th>
-                    <th>orG_TYPE</th>
-                    <th>orG_TYPE_NHSO</th>
-                    <th>NAME_TH</th>
-                    <th>namE_EN</th>
-                    <th>addr</th>
-                    <th>mu</th>
-                    <th>changwat</th>
-                    <th>ampur</th>
-                    <th>tambon</th>
-                    <th>bed</th>
-                    <th>department</th>
-                    <th>tel</th>
-                    <th>fax</th>
-                    <th>nhsO_ID</th>
-                    <th>OPDC</th>
-                    <th>phO_ID</th>
-                    <th>ssO_ID</th>
-                    <th>iS_MDR_TREAT</th>
-                    <th>iS_CULTURE_TREAT</th>
-                    <th>iS_DST_TREAT</th>
-                    <th>iS_MOLECULAR_TREAT</th>
-                    <th>status</th>
-                    <th>latitude</th>
-                    <th>longtitude</th>
-                    <th>iS_CUL_SOLID</th>
-                    <th>iS_CUL_LIQUID</th>
-                    <th>iS_DST_SOLID</th>
-                    <th>iS_DST_LIQUID</th>
-                    <th>iS_MOL_LPA</th>
-                    <th>iS_MOL_XPERT</th>
-                    <th>iS_NHSO_ORG</th>
-                    <th>iS_OUTOF_TBCM</th>
-                    <th>hmain_id</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <td>HOSP Name: </td>
+                    <td><input type="text" id="txthosp" /></td>
+                    <td>Changwat: </td>
+                    <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--",new { @id = "chw"})</td>
+                    <td><input type="button" value="search" id="btnSearch" /></td>
                 </tr>
-            </thead>
+            </tbody>
         </table>
+
     </div>
-</body>
-</html>
-<script>
-    $(document).ready(function () {
-        var oTable = $('#hTable').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "filter": false,
-            "orderMulti": false,
-            "ajax": {
-                "url": '/hcode/gethosp',
-                "type": "POST",
-                "datatype": "json"
-            },
-            "columns": [
-                { data: "orG_ID", "name": "orG_ID", "autowidth": true },
-                { data: "orG_ID_9", "name": "orG_ID_9", "autowidth": true },
-                { data: "orG_LEVEL", "name": "orG_LEVEL", "autowidth": true },
-                { data: "orG_TYPE", "name": "orG_TYPE", "autowidth": true },
-                { data: "orG_TYPE_NHSO", "name": "orG_TYPE_NHSO", "autowidth": true },
-                { data: "namE_TH", "name": "name_TH", "autowidth": true },
-                { data: "namE_EN", "name": "name_EN", "autowidth": true },
-                { data: "addr", "name": "addr", "autowidth": true },
-                { data: "mu", "name": "mu", "autowidth": true },
-                { data: "changwat", "name": "changwat", "autowidth": true },
-                { data: "ampur", "name": "ampur", "autowidth": true },
-                { data: "tambon", "name": "tambon", "autowidth": true },
-                { data: "bed", "name": "bed", "autowidth": true },
-                { data: "department", "name": "department", "autowidth": true },
-                { data: "tel", "name": "tel", "autowidth": true },
-                { data: "fax", "name": "fax", "autowidth": true },
-                { data: "nhsO_ID", "name": "nhsO_ID", "autowidth": true },
-                { data: "odpC_ID", "name": "odpC_ID", "autowidth": true },
-                { data: "phO_ID", "name": "phO_ID", "autowidth": true },
-                { data: "ssO_ID", "name": "ssO_ID", "autowidth": true },
-                { data: "iS_MDR_TREAT", "name": "iS_MDR_TREAT", "autowidth": true },
-                { data: "iS_CULTURE_TREAT", "name": "iS_CULTURE_TREAT", "autowidth": true },
-                { data: "iS_DST_TREAT", "name": "iS_DST_TREAT", "autowidth": true },
-                { data: "iS_MOLECULAR_TREAT", "name": "iS_MOLECULAR_TREAT", "autowidth": true },
-                { data: "status", "name": "status", "autowidth": true },
-                { data: "latitude", "name": "latitude", "autowidth": true },
-                { data: "longtitude", "name": "longtitude", "autowidth": true },
-                { data: "iS_CUL_SOLID", "name": "iS_CUL_SOLID", "autowidth": true },
-                { data: "iS_CUL_LIQUID", "name": "iS_CUL_LIQUID", "autowidth": true },
-                { data: "iS_DST_SOLID", "name": "iS_DST_SOLID", "autowidth": true },
-                { data: "iS_DST_LIQUID", "name": "iS_DST_LIQUID", "autowidth": true },
-                { data: "iS_MOL_LPA", "name": "iS_MOL_LPA", "autowidth": true },
-                { data: "iS_MOL_XPERT", "name": "iS_MOL_XPERT", "autowidth": true },
-                { data: "iS_NHSO_ORG", "name": "iS_NHSO_ORG", "autowidth": true },
-                { data: "iS_OUTOF_TBCM", "name": "iS_OUTOF_TBCM", "autowidth": true },
-                { data: "hmain_id", "name": "hmain_id", "autowidth": true },
-                {
-                    "data": "ORG_ID", "width": "50px", "render": function (data) {
-                        return '<a class="popup" href="/hcode/save/' + data + '">Edit</a>';
-                    }
+<div style="width:100%;overflow:scroll;margin:0 auto;">
+    <table id="hTable" class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>ORG_ID</th>
+                <th>ORG_ID_9</th>
+                <th>orG_LEVEL</th>
+                <th>orG_TYPE</th>
+                <th>orG_TYPE_NHSO</th>
+                <th>NAME_TH</th>
+                <th>namE_EN</th>
+                <th>addr</th>
+                <th>mu</th>
+                <th>changwat</th>
+                <th>ampur</th>
+                <th>tambon</th>
+                <th>bed</th>
+                <th>department</th>
+                <th>tel</th>
+                <th>fax</th>
+                <th>nhsO_ID</th>
+                <th>OPDC</th>
+                <th>phO_ID</th>
+                <th>ssO_ID</th>
+                <th>iS_MDR_TREAT</th>
+                <th>iS_CULTURE_TREAT</th>
+                <th>iS_DST_TREAT</th>
+                <th>iS_MOLECULAR_TREAT</th>
+                <th>status</th>
+                <th>latitude</th>
+                <th>longtitude</th>
+                <th>iS_CUL_SOLID</th>
+                <th>iS_CUL_LIQUID</th>
+                <th>iS_DST_SOLID</th>
+                <th>iS_DST_LIQUID</th>
+                <th>iS_MOL_LPA</th>
+                <th>iS_MOL_XPERT</th>
+                <th>iS_NHSO_ORG</th>
+                <th>iS_OUTOF_TBCM</th>
+                <th>hmain_id</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#hTable').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "filter": false,
+                "orderMulti": false,
+                "dom": '<"top"i>rt<"bottom"lp><"clear">',
+                "ajax": {
+                    "url": '/hcode/gethosp',
+                    "type": "POST",
+                    "datatype": "json"
                 },
-                {
-                    "data": "ORG_ID", "width": "50px", "render": function (data) {
-                        return '<a class="popup" href="/hcode/delete/' + data + '">Delete</a>';
+                "columns": [
+                    { data: "orG_ID", "name": "orG_ID", "autowidth": true },
+                    { data: "orG_ID_9", "name": "orG_ID_9", "autowidth": true },
+                    { data: "orG_LEVEL", "name": "orG_LEVEL", "autowidth": true },
+                    { data: "orG_TYPE", "name": "orG_TYPE", "autowidth": true },
+                    { data: "orG_TYPE_NHSO", "name": "orG_TYPE_NHSO", "autowidth": true },
+                    { data: "namE_TH", "name": "name_TH", "autowidth": true },
+                    { data: "namE_EN", "name": "name_EN", "autowidth": true },
+                    { data: "addr", "name": "addr", "autowidth": true },
+                    { data: "mu", "name": "mu", "autowidth": true },
+                    { data: "changwat", "name": "changwat", "autowidth": true },
+                    { data: "ampur", "name": "ampur", "autowidth": true },
+                    { data: "tambon", "name": "tambon", "autowidth": true },
+                    { data: "bed", "name": "bed", "autowidth": true },
+                    { data: "department", "name": "department", "autowidth": true },
+                    { data: "tel", "name": "tel", "autowidth": true },
+                    { data: "fax", "name": "fax", "autowidth": true },
+                    { data: "nhsO_ID", "name": "nhsO_ID", "autowidth": true },
+                    { data: "odpC_ID", "name": "odpC_ID", "autowidth": true },
+                    { data: "phO_ID", "name": "phO_ID", "autowidth": true },
+                    { data: "ssO_ID", "name": "ssO_ID", "autowidth": true },
+                    { data: "iS_MDR_TREAT", "name": "iS_MDR_TREAT", "autowidth": true },
+                    { data: "iS_CULTURE_TREAT", "name": "iS_CULTURE_TREAT", "autowidth": true },
+                    { data: "iS_DST_TREAT", "name": "iS_DST_TREAT", "autowidth": true },
+                    { data: "iS_MOLECULAR_TREAT", "name": "iS_MOLECULAR_TREAT", "autowidth": true },
+                    { data: "status", "name": "status", "autowidth": true },
+                    { data: "latitude", "name": "latitude", "autowidth": true },
+                    { data: "logitude", "name": "logitude", "autowidth": true },
+                    { data: "iS_CUL_SOLID", "name": "iS_CUL_SOLID", "autowidth": true },
+                    { data: "iS_CUL_LIQUID", "name": "iS_CUL_LIQUID", "autowidth": true },
+                    { data: "iS_DST_SOLID", "name": "iS_DST_SOLID", "autowidth": true },
+                    { data: "iS_DST_LIQUID", "name": "iS_DST_LIQUID", "autowidth": true },
+                    { data: "iS_MOL_LPA", "name": "iS_MOL_LPA", "autowidth": true },
+                    { data: "iS_MOL_XPERT", "name": "iS_MOL_XPERT", "autowidth": true },
+                    { data: "iS_NHSO_ORG", "name": "iS_NHSO_ORG", "autowidth": true },
+                    { data: "iS_OUTOF_TBCM", "name": "iS_OUTOF_TBCM", "autowidth": true },
+                    { data: "hmain_id", "name": "hmain_id", "autowidth": true },
+                    {
+                        "data": "orG_ID", "width": "50px", "render": function (data) {
+                            return '<a class="popup" href="/hcode/edit/' + data + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "data": "orG_ID", "width": "50px", "render": function (data) {
+                            return '<a class="popup" href="/hcode/delete/' + data + '">Delete</a>';
+                        }
                     }
-                }
-            ]
-        })
-    })
-</script>
+                ]
+            });
+            //Apply Custom search on jQuery DataTables here
+            oTable = $('#hTable').DataTable();
+            $('#btnSearch').click(function () {
+                //Apply search for Employee Name // DataTable column index 0
+                var t = document.getElementById("txthosp").value;
+                oTable.columns().search(t);
+                //alert(document.getElementById("txthosp").value);
+                //Apply search for Country // DataTable column index 3
+                //oTable.columns(3).search($('#ddCountry').val().trim());
+                //hit search on server
+                oTable.draw();
+            });
+        });
+    </script>
+}

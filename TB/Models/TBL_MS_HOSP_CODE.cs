@@ -2,11 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
+
 namespace TB.Models
 {
     public class TBL_MS_HOSP_CODE
     {
-        private decimal _LATITUDE, _LONGTITUDE;
+        private decimal _LATITUDE, _LOGITUDE;
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -35,15 +36,17 @@ namespace TB.Models
         public string IS_DST_TREAT { get; set; }
         public string IS_MOLECULAR_TREAT { get; set; }
         public string STATUS { get; set; }
-        public decimal LATITUDE
+        [StringLength(53)]
+        public double LATITUDE
         {
-            get { return _LATITUDE; }
-            set { _LATITUDE = value; }
+            get { return (float)_LATITUDE; }
+            set { _LATITUDE = (decimal)value; }
         }
-        public decimal LONGTITUDE
+        [StringLength(53)]
+        public double LOGITUDE
         {
-            get { return _LONGTITUDE; }
-            set { _LONGTITUDE = value; }
+            get { return (float)_LOGITUDE; }
+            set { _LOGITUDE = (decimal)value; }
         }
         public string IS_CUL_SOLID { get; set; }
         public string IS_CUL_LIQUID { get; set; }

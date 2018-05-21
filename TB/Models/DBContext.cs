@@ -19,6 +19,31 @@ namespace TB.Models
         {
             modelBuilder.Entity<TBL_MS_DEFINE_CODE>()
                 .HasKey(c => new {c.MAJOR,c.MINOR });
+            modelBuilder.Entity<TBL_MS_HOSP_CODE>()
+                .Property(c => c.LATITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_HOSP_CODE>()
+                .Property(c => c.LOGITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_TAMBON>()
+                .Property(c => c.LATITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_TAMBON>()
+                .Property(c => c.LONGTITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_TAMBON>()
+                .Property(c => c.POLYGON)
+                .HasColumnType("text");
+            modelBuilder.Entity<TBL_MS_AMPUR>()
+                .Property(c => c.LATITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_AMPUR>()
+                .Property(c => c.LONGTITUDE)
+                .HasColumnType("float");
+            modelBuilder.Entity<TBL_MS_AMPUR>()
+                .Property(c => c.POLYGON)
+                .HasColumnType("text");
+
         }
         public DbSet<TBL_REQUEST_USER_GROUP> TBL_REQUEST_USER_GROUP { get; set; }
     }

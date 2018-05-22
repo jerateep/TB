@@ -4,20 +4,22 @@
     ViewData["Title"] = "Hospital";
     Layout = "_Layout";
 }
-<div>
-        <table>
-            <tbody>
-                <tr>
-                    <td>HOSP Name: </td>
-                    <td><input type="text" id="txthosp" /></td>
-                    <td>Changwat: </td>
-                    <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--",new { @id = "chw"})</td>
-                    <td><input type="button" value="search" id="btnSearch" /></td>
-                </tr>
-            </tbody>
-        </table>
 
-    </div>
+<div style="background-color:#f5f5f5; padding:20px">
+    <table>
+        <tbody>
+            <tr>
+                <td>HOSP Name: </td>
+                <td><input type="text" id="txthosp" /></td>
+                <td>Changwat: </td>
+                @*<td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--", new { @id = "chw" })</td>*@
+                <td><input type="button" value="search" id="btnSearch" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
 <div style="width:100%;overflow:scroll;margin:0 auto;">
     <table id="hTable" class="table table-responsive table-striped">
         <thead>
@@ -67,17 +69,22 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            $('#hTable').DataTable({
+            var oTable = $('#hTable').DataTable({
                 "processing": true,
                 "serverSide": true,
-                "filter": false,
                 "orderMulti": false,
                 "dom": '<"top"i>rt<"bottom"lp><"clear">',
                 "ajax": {
-                    "url": '/hcode/gethosp',
+                    "url": '/hcode/LoadData',
                     "type": "POST",
                     "datatype": "json"
                 },
+                "columnDefs":
+                    [{
+                        "targets": [0],
+                        "visible": true,
+                        "searchable": true
+                    }],
                 "columns": [
                     { data: "orG_ID", "name": "orG_ID", "autowidth": true },
                     { data: "orG_ID_9", "name": "orG_ID_9", "autowidth": true },
@@ -116,27 +123,18 @@
                     { data: "iS_OUTOF_TBCM", "name": "iS_OUTOF_TBCM", "autowidth": true },
                     { data: "hmain_id", "name": "hmain_id", "autowidth": true },
                     {
-                        "data": "orG_ID", "width": "50px", "render": function (data) {
-                            return '<a class="popup" href="/hcode/edit/' + data + '">Edit</a>';
-                        }
+                        "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/hcode/Edit/' + full.ORG_ID + '">Edit</a>'; }
                     },
                     {
-                        "data": "orG_ID", "width": "50px", "render": function (data) {
-                            return '<a class="popup" href="/hcode/delete/' + data + '">Delete</a>';
+                        data: null, render: function (data, type, row) {
+                            return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.ORG_ID + "'); >Delete</a>";
                         }
-                    }
+                    },
                 ]
             });
-            //Apply Custom search on jQuery DataTables here
-            oTable = $('#hTable').DataTable();
+            //oTable = $('#hTable').DataTable();
             $('#btnSearch').click(function () {
-                //Apply search for Employee Name // DataTable column index 0
-                var t = document.getElementById("txthosp").value;
-                oTable.columns().search(t);
-                //alert(document.getElementById("txthosp").value);
-                //Apply search for Country // DataTable column index 3
-                //oTable.columns(3).search($('#ddCountry').val().trim());
-                //hit search on server
+                oTable.columns(0).search($('#txthosp').val() || '');
                 oTable.draw();
             });
         });

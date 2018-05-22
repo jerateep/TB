@@ -24,38 +24,41 @@ namespace TB.Controllers
             ViewBag.ch = new SelectList(_context.TBL_MS_CHANGWAT, "CHANGWAT_ID", "CHANGWAT_NAME_TH");
             return View();
         }
-        // GET: HCODE
+
         [HttpPost]
-        public IActionResult GetHosp()
+        public IActionResult LoadData()
         {
-            var draw = Request.Form["draw"].FirstOrDefault();
-            var start = Request.Form["start"].FirstOrDefault();
-            var length = Request.Form["length"].FirstOrDefault();
-            //Find Order Column
-            var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
-            var sortColumnDir = Request.Form["order[0][dir]"].FirstOrDefault();
-            var hospname = Request.Form["[search][value]"].FirstOrDefault();
-            var changwat = Request.Form["columns[9][search][value]"].FirstOrDefault();
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int recordsTotal = 0;
-            var v = (from c in _context.TBL_MS_HOSP_CODE select c);
-            if(!string.IsNullOrEmpty(hospname))
+            try
             {
-                v = v.Where(c => c.NAME_TH.Contains(hospname));
+                var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+                var start = Request.Form["start"].FirstOrDefault();
+                var length = Request.Form["length"].FirstOrDefault();
+                var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+                var searchValue = Request.Form["columns[0][search][value]"].FirstOrDefault();
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+                int recordsTotal = 0;
+                var hData = (from c in _context.TBL_MS_HOSP_CODE select c);
+                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
+                {
+                    hData = hData.OrderBy(sortColumn + " " + sortColumnDirection);
+                }
+                //Search
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    hData = hData.Where(m => m.ORG_ID == searchValue);
+                }
+                recordsTotal = hData.Count();
+                var data = hData.Skip(skip).Take(pageSize).ToList();
+                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+
             }
-            if (!string.IsNullOrEmpty(changwat))
+            catch (Exception)
             {
-                v = v.Where(c => c.CHANGWAT.Contains(changwat));
+                throw;
             }
-            //SORT
-            if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
-            {
-                v = v.OrderBy(sortColumn + " " + sortColumnDir);
-            }
-            recordsTotal = v.Count();
-            var data = v.Skip(skip).Take(pageSize).ToList();
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+
         }
 
         [HttpGet]
@@ -64,11 +67,5 @@ namespace TB.Controllers
             var v = _context.TBL_MS_HOSP_CODE.Where(a => a.ORG_ID == id).FirstOrDefault();
             return View(v);
         }
-
-        //public IActionResult GetHosp2()
-        //{
-        //    var v = (from c in _context.TBL_MS_HOSP_CODE select c).ToList();
-        //    return Json(new { data = v });
-        //}
     }
 }

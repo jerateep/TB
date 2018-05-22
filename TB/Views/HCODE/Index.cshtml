@@ -9,10 +9,12 @@
     <table>
         <tbody>
             <tr>
+                <td>ORG_ID: </td>
+                <td><input type="text" id="txtorg_id" /></td>
                 <td>HOSP Name: </td>
-                <td><input type="text" id="txthosp" /></td>
+                <td><input type="text" id="txtname" /></td>
                 <td>Changwat: </td>
-                @*<td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--", new { @id = "chw" })</td>*@
+                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--", new { @id = "txtch" })</td>
                 <td><input type="button" value="search" id="btnSearch" /></td>
             </tr>
         </tbody>
@@ -134,7 +136,9 @@
             });
             //oTable = $('#hTable').DataTable();
             $('#btnSearch').click(function () {
-                oTable.columns(0).search($('#txthosp').val() || '');
+                oTable.columns(0).search($('#txtorg_id').val() || '');
+                oTable.columns(5).search($('#txtname').val() || '');
+                oTable.columns(9).search($('#txtch').val() || '');
                 oTable.draw();
             });
         });

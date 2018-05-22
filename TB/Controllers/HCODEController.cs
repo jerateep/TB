@@ -35,7 +35,9 @@ namespace TB.Controllers
                 var length = Request.Form["length"].FirstOrDefault();
                 var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
                 var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
-                var searchValue = Request.Form["columns[0][search][value]"].FirstOrDefault();
+                var txtOrg_ID = Request.Form["columns[0][search][value]"].FirstOrDefault();
+                var txtname = Request.Form["columns[5][search][value]"].FirstOrDefault();
+                var txtch = Request.Form["columns[9][search][value]"].FirstOrDefault();
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
                 int recordsTotal = 0;
@@ -45,9 +47,17 @@ namespace TB.Controllers
                     hData = hData.OrderBy(sortColumn + " " + sortColumnDirection);
                 }
                 //Search
-                if (!string.IsNullOrEmpty(searchValue))
+                if (!string.IsNullOrEmpty(txtOrg_ID))
                 {
-                    hData = hData.Where(m => m.ORG_ID == searchValue);
+                    hData = hData.Where(m => m.ORG_ID == txtOrg_ID);
+                }
+                if (!string.IsNullOrEmpty(txtname))
+                {
+                    hData = hData.Where(m => m.NAME_TH == txtname);
+                }
+                if (!string.IsNullOrEmpty(txtch))
+                {
+                    hData = hData.Where(m => m.CHANGWAT == txtch);
                 }
                 recordsTotal = hData.Count();
                 var data = hData.Skip(skip).Take(pageSize).ToList();

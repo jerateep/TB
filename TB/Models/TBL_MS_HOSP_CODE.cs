@@ -7,7 +7,8 @@ namespace TB.Models
 {
     public class TBL_MS_HOSP_CODE
     {
-        private decimal _LATITUDE, _LOGITUDE;
+       // private float _LATITUDE, _LOGITUDE;
+
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -36,18 +37,17 @@ namespace TB.Models
         public string IS_DST_TREAT { get; set; }
         public string IS_MOLECULAR_TREAT { get; set; }
         public string STATUS { get; set; }
-        [StringLength(53)]
-        public double LATITUDE
+        public double ? LATITUDE
         {
-            get { return (float)_LATITUDE; }
-            set { _LATITUDE = (decimal)value; }
+            get;
+            set;
         }
-        [StringLength(53)]
-        public double LOGITUDE
+        public double ? LOGITUDE
         {
-            get { return (float)_LOGITUDE; }
-            set { _LOGITUDE = (decimal)value; }
+            get;
+            set;
         }
+
         public string IS_CUL_SOLID { get; set; }
         public string IS_CUL_LIQUID { get; set; }
         public string IS_DST_SOLID { get; set; }

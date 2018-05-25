@@ -41,6 +41,8 @@ namespace TB.Controllers
             var txtOrg_ID = Request.Form["columns[0][search][value]"].FirstOrDefault();
             var txtname = Request.Form["columns[5][search][value]"].FirstOrDefault();
             var txtch = Request.Form["columns[9][search][value]"].FirstOrDefault();
+            List<string> strCh = txtch.Split(',').ToList();
+            bool isEmpty = strCh.Any();
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt16(start) : 0;
             int recordsTotal = 0;
@@ -54,9 +56,9 @@ namespace TB.Controllers
             {
                 v = v.Where(m => m.NAME_TH == txtname);
             }
-            if (!string.IsNullOrEmpty(txtch))
+            if (isEmpty)
             {
-                v = v.Where(m => m.CHANGWAT == txtch);
+                v = v.Where(m => strCh.Contains(m.CHANGWAT));
             }
             //SORTING...  (For sorting we need to add a reference System.Linq.Dynamic)
             if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))

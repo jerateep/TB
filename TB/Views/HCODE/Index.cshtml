@@ -6,6 +6,7 @@
 }
 <link href="~/bower_components/select2/dist/css/select2.css" rel="stylesheet" />
 <div style="background-color:#f5f5f5; padding:20px">
+<br /><br /><br /><br />
     <table>
         <tbody>
             <tr>
@@ -14,8 +15,8 @@
                 <td><label> HOSP Name: </label></td>
                 <td><input type="text" id="txtname" class="form-control" /></td>
                 <td><label>Changwat: </label></td>
-                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "--จังหวัด--", new { @id = "txtch", style = "width: 250px;" })</td>
-                <td><input type="button" value="search" id="btnSearch" class="btn btn-success" /></td>
+                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, "<-------------จังหวัด------------->", new { @id = "txtch", style = "width: 250px;",Multiple= "Multiple" })</td>
+                <td><input type="button" value="search" id="btnSearch" class="btn btn-success" /></td
             </tr>
         </tbody>
     </table>
@@ -74,6 +75,7 @@
         $(document).ready(function () {
             $('#txtch').select2();
         });
+        //Datatables
         $(document).ready(function () {
             var oTable = $('#hTable').DataTable({
                 "processing": true,
@@ -133,10 +135,12 @@
                 ]
             });
             //oTable = $('#hTable').DataTable();
+            var str;
             $('#btnSearch').click(function () {
                 oTable.columns(0).search($('#txtorg_id').val().trim());
                 oTable.columns(5).search($('#txtname').val().trim());
-                oTable.columns(9).search($('#txtch').val().trim());
+                str = $("#txtch").val();
+                oTable.columns(9).search(str);
                 oTable.draw();
             });
         });

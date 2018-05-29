@@ -41,12 +41,11 @@ namespace TB.Controllers
             var txtOrg_ID = Request.Form["columns[0][search][value]"].FirstOrDefault();
             var txtname = Request.Form["columns[5][search][value]"].FirstOrDefault();
             var txtch = Request.Form["columns[9][search][value]"].FirstOrDefault();
-            List<string> strCh = txtch.Split(',').ToList();
-            bool isEmpty = strCh.Any();
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt16(start) : 0;
             int recordsTotal = 0;
             var v = (from c in _context.TBL_MS_HOSP_CODE select c);
+            List<string> strCh = txtch.Split(',').ToList();
             //Search
             if (!string.IsNullOrEmpty(txtOrg_ID))
             {
@@ -56,7 +55,7 @@ namespace TB.Controllers
             {
                 v = v.Where(m => m.NAME_TH == txtname);
             }
-            if (isEmpty)
+            if (!string.IsNullOrEmpty(txtch))
             {
                 v = v.Where(m => strCh.Contains(m.CHANGWAT));
             }
@@ -71,10 +70,34 @@ namespace TB.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(string id)
+        public IActionResult Save(string id)
         {
-            var v = _context.TBL_MS_HOSP_CODE.Where(a => a.ORG_ID == id).FirstOrDefault();
-            return View(v);
+            //var v = _context.TBL_MS_HOSP_CODE.Where(a => a.ORG_ID == id).FirstOrDefault();
+            return View(new TBL_MS_HOSP_CODE());
+        }
+
+        [HttpPost]
+        public IActionResult Save(TBL_MS_HOSP_CODE hc)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                if (hc.ORG_ID != null)
+                {
+                    var v = _context.TBL_MS_HOSP_CODE.Where(c => c.ORG_ID == hc.ORG_ID).FirstOrDefault();
+                    if (v != null)
+                    {
+                        v.NAME_TH = hc.NAME_TH;
+                    }
+                }
+                else
+                {
+                    _context.TBL_MS_HOSP_CODE.Add(hc);
+                }
+                _context.SaveChanges();
+                status = true;
+            }
+            return  Json(new { status=status});
         }
     }
 }

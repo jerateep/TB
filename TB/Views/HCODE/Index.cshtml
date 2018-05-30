@@ -24,8 +24,8 @@
 </div>
 
 <div style="width:100%;overflow:scroll;margin:0 auto;">
-    <a class="btn btn-success" style="margin-bottom:10px"><i class="fa fa-plus">Add New</i></a>
-    <table id="hTable" class="table table-responsive table-striped">
+    <a class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("save","hcode")')"><i class="fa fa-plus">Add New</i></a>
+    <table id="hTable" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ORG_ID</th>
@@ -73,6 +73,7 @@
 @section Scripts{
     <script src="~/bower_components/select2/dist/js/select2.min.js"></script>
     <script>
+        var popup, oTable;
         $(document).ready(function () {
             $('#txtch').select2({
                 placeholder: 'เลือกจังหวัด',
@@ -81,7 +82,7 @@
         });
         //Datatables
         $(document).ready(function () {
-            var oTable = $('#hTable').DataTable({
+            oTable = $('#hTable').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "orderMulti": false,
@@ -101,7 +102,7 @@
                     { "data": "namE_EN", "name": "name_EN", "autowidth": true },
                     { "data": "addr", "name": "addr", "autowidth": true },
                     { "data": "mu", "name": "mu", "autowidth": true },
-                    { "data": "changwat", "name": "changwat", "autowidth": true },
+                    { "data": "changwaT_NAME_TH", "name": "changwaT_NAME_TH", "autowidth": true },
                     { "data": "ampur", "name": "ampur", "autowidth": true },
                     { "data": "tambon", "name": "tambon", "autowidth": true },
                     { "data": "bed", "name": "bed", "autowidth": true },
@@ -145,6 +146,42 @@
                 oTable.draw();
             });
         });
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Hospital Detail',
+                        height: 500,
+                        width: 800,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+
+                    });
+                });
+        }
+        function SubmitForm(form) {
+            $.validator.unbotrusive.parse(form);
+            if ($(form).valid()) {
+                ajax({
+                    type: 'post',
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            popup.dialog('close');
+                            oTable.ajax.reload();
+                        }
+                    }
+                });
+            }
+            return false;
+        }
         $.fn.dataTable.ext.errMode = 'throw';
     </script>
 }

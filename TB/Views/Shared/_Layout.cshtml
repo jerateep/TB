@@ -6,6 +6,7 @@
     <title>TBTHAILAND | MANAGEMENT</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <environment include="Development">
+        <link rel="stylesheet" href="~/bower_components/jquery-ui/themes/base/jquery-ui.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="~/bower_components/Ionicons/css/ionicons.min.css">
@@ -111,14 +112,20 @@
     </div>
     <!-- ./wrapper -->
     <environment include="Development">
-        <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        @*<script src="~/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>*@
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
         <script src="~/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/bower_components/fastclick/lib/fastclick.js"></script>
         <script src="~/dist/js/adminlte.min.js"></script>
         <script src="~/dist/js/demo.js"></script>
         <!--Datatables-->
         <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/dataTables.jqueryui.min.js"></script>
         <script type="text/javascript" language="javascript" src="~/bower_components/Datatables/js/dataTables.bootstrap4.min.js"></script>
     </environment>
     <script>

@@ -12,7 +12,9 @@ namespace TB.Models
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required(ErrorMessage = "not null")]
         public string ORG_ID { get; set; }
+        [Required(ErrorMessage ="not null")]
         public string ORG_ID_9 { get; set; }
         public string ORG_LEVEL { get; set; }
         public string ORG_TYPE { get; set; }

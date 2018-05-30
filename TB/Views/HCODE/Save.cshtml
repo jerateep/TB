@@ -1,39 +1,193 @@
-﻿@*@model TB.Models.TBL_MS_HOSP_CODE
-<h2>Save</h2>
-@using (Html.BeginForm("save", "hcode", FormMethod.Post, new { id = "popupForm" }))
+﻿@model TB.Models.TBL_MS_HOSP_CODE
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("save", "hcode", FormMethod.Post, new { onsumit = "return Submition(this)" }))
 {
-    if (Model != null && Model.ORG_ID != null)
-    {
-        @Html.HiddenFor(a => a.ORG_ID)
-    }
+    @Html.HiddenFor(model => model.ORG_ID)
+    <input type="hidden" asp-for="ORG_ID" />
+    <div class="form-group">
+        <label asp-for="ORG_ID" class="control-label"></label>
+        <input asp-for="ORG_ID" class="form-control" />
+        <span asp-validation-for="ORG_ID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ORG_ID_9" class="control-label"></label>
+        <input asp-for="ORG_ID_9" class="form-control" />
+        <span asp-validation-for="ORG_ID_9" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ORG_LEVEL" class="control-label"></label>
+        <input asp-for="ORG_LEVEL" class="form-control" />
+        <span asp-validation-for="ORG_LEVEL" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ORG_TYPE" class="control-label"></label>
+        <input asp-for="ORG_TYPE" class="form-control" />
+        <span asp-validation-for="ORG_TYPE" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ORG_TYPE_NHSO" class="control-label"></label>
+        <input asp-for="ORG_TYPE_NHSO" class="form-control" />
+        <span asp-validation-for="ORG_TYPE_NHSO" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NAME_TH" class="control-label"></label>
+        <input asp-for="NAME_TH" class="form-control" />
+        <span asp-validation-for="NAME_TH" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NAME_EN" class="control-label"></label>
+        <input asp-for="NAME_EN" class="form-control" />
+        <span asp-validation-for="NAME_EN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ADDR" class="control-label"></label>
+        <input asp-for="ADDR" class="form-control" />
+        <span asp-validation-for="ADDR" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MU" class="control-label"></label>
+        <input asp-for="MU" class="form-control" />
+        <span asp-validation-for="MU" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CHANGWAT" class="control-label"></label>
+        <input asp-for="CHANGWAT" class="form-control" />
+        <span asp-validation-for="CHANGWAT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AMPUR" class="control-label"></label>
+        <input asp-for="AMPUR" class="form-control" />
+        <span asp-validation-for="AMPUR" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TAMBON" class="control-label"></label>
+        <input asp-for="TAMBON" class="form-control" />
+        <span asp-validation-for="TAMBON" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BED" class="control-label"></label>
+        <input asp-for="BED" class="form-control" />
+        <span asp-validation-for="BED" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DEPARTMENT" class="control-label"></label>
+        <input asp-for="DEPARTMENT" class="form-control" />
+        <span asp-validation-for="DEPARTMENT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TEL" class="control-label"></label>
+        <input asp-for="TEL" class="form-control" />
+        <span asp-validation-for="TEL" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FAX" class="control-label"></label>
+        <input asp-for="FAX" class="form-control" />
+        <span asp-validation-for="FAX" class="text-danger"></span>
+    </div>
 
     <div class="form-group">
-        <label>First Name</label>
-        @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(a => a.FirstName)
+        <label asp-for="NHSO_ID" class="control-label"></label>
+        <input asp-for="NHSO_ID" class="form-control" />
+        <span asp-validation-for="NHSO_ID" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Last Name</label>
-        @Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(a => a.LastName)
+        <label asp-for="ODPC_ID" class="control-label"></label>
+        <input asp-for="ODPC_ID" class="form-control" />
+        <span asp-validation-for="ODPC_ID" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Email</label>
-        @Html.TextBoxFor(a => a.EmailID, new { @class = "form-control" })
-        @Html.ValidationMessageFor(a => a.EmailID)
+        <label asp-for="PHO_ID" class="control-label"></label>
+        <input asp-for="PHO_ID" class="form-control" />
+        <span asp-validation-for="PHO_ID" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>City</label>
-        @Html.TextBoxFor(a => a.City, new { @class = "form-control" })
-        @Html.ValidationMessageFor(a => a.City)
+        <label asp-for="SSO_ID" class="control-label"></label>
+        <input asp-for="SSO_ID" class="form-control" />
+        <span asp-validation-for="SSO_ID" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Country</label>
-        @Html.TextBoxFor(a => a.Country, new { @class = "form-control" })
-        @Html.ValidationMessageFor(a => a.Country)
+        <label asp-for="IS_MDR_TREAT" class="control-label"></label>
+        <select asp-for="IS_MDR_TREAT" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_MDR_TREAT" class="text-danger"></span>
     </div>
-
-    <div>
-        <input type="submit" value="Save" />
+    <div class="form-group">
+        <label asp-for="IS_CULTURE_TREAT" class="control-label"></label>
+        <select asp-for="IS_CULTURE_TREAT" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_CULTURE_TREAT" class="text-danger"></span>
     </div>
-}*@
+    <div class="form-group">
+        <label asp-for="IS_DST_TREAT" class="control-label"></label>
+        <select asp-for="IS_DST_TREAT" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_DST_TREAT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_MOLECULAR_TREAT" class="control-label"></label>
+        <select asp-for="IS_MOLECULAR_TREAT" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_MOLECULAR_TREAT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="STATUS" class="control-label"></label>
+        <select asp-for="STATUS" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="STATUS" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LATITUDE" class="control-label"></label>
+        <input asp-for="LATITUDE" class="form-control" />
+        <span asp-validation-for="LATITUDE" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LOGITUDE" class="control-label"></label>
+        <input asp-for="LOGITUDE" class="form-control" />
+        <span asp-validation-for="LOGITUDE" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_CUL_SOLID" class="control-label"></label>
+        <select asp-for="IS_CUL_SOLID" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_CUL_SOLID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_CUL_LIQUID" class="control-label"></label>
+        <select asp-for="IS_CUL_LIQUID" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_CUL_LIQUID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_DST_SOLID" class="control-label"></label>
+        <select asp-for="IS_DST_SOLID" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_DST_SOLID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_DST_LIQUID" class="control-label"></label>
+        <select asp-for="IS_DST_LIQUID" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_DST_LIQUID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_MOL_LPA" class="control-label"></label>
+        <select asp-for="IS_MOL_LPA" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_MOL_LPA" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_MOL_XPERT" class="control-label"></label>
+        <select asp-for="IS_MOL_XPERT" asp-items="@(new SelectList(@ViewBag.Active) )" class="form-control"></select>
+        <span asp-validation-for="IS_MOL_XPERT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_NHSO_ORG" class="control-label"></label>
+        <input asp-for="IS_NHSO_ORG" class="form-control" />
+        <span asp-validation-for="IS_NHSO_ORG" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IS_OUTOF_TBCM" class="control-label"></label>
+        <input asp-for="IS_OUTOF_TBCM" class="form-control" />
+        <span asp-validation-for="IS_OUTOF_TBCM" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="hmain_id" class="control-label"></label>
+        <input asp-for="hmain_id" class="form-control" />
+        <span asp-validation-for="hmain_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+}

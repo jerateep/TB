@@ -44,7 +44,47 @@ namespace TB.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt16(start) : 0;
             int recordsTotal = 0;
-            var v = (from c in _context.TBL_MS_HOSP_CODE select c);
+            var v = (from c in _context.TBL_MS_HOSP_CODE
+                     join ch in _context.TBL_MS_CHANGWAT on c.CHANGWAT equals ch.CHANGWAT_ID
+                     select new {
+                         c.ORG_ID,
+                         c.ORG_ID_9,
+                         c.ORG_LEVEL,
+                         c.ORG_TYPE,
+                         c.ORG_TYPE_NHSO,
+                         c.NAME_TH,
+                         c.NAME_EN,
+                         c.ADDR,
+                         c.MU,
+                         c.CHANGWAT,
+                         ch.CHANGWAT_NAME_TH,
+                         c.AMPUR,
+                         c.TAMBON,
+                         c.BED,
+                         c.DEPARTMENT,
+                         c.TEL,
+                         c.FAX,
+                         c.NHSO_ID,
+                         c.ODPC_ID,
+                         c.PHO_ID,
+                         c.SSO_ID,
+                         c.IS_MDR_TREAT,
+                         c.IS_CULTURE_TREAT,
+                         c.IS_DST_TREAT,
+                         c.IS_MOLECULAR_TREAT,
+                         c.STATUS,
+                         c.LATITUDE,
+                         c.LOGITUDE,
+                         c.IS_CUL_SOLID,
+                         c.IS_CUL_LIQUID,
+                         c.IS_DST_SOLID,
+                         c.IS_DST_LIQUID,
+                         c.IS_MOL_LPA,
+                         c.IS_MOL_XPERT,
+                         c.IS_NHSO_ORG,
+                         c.IS_OUTOF_TBCM,
+                         c.hmain_id
+                     });
             List<string> strCh = txtch.Split(',').ToList();
             //Search
             if (!string.IsNullOrEmpty(txtOrg_ID))
@@ -70,34 +110,26 @@ namespace TB.Controllers
         }
 
         [HttpGet]
-        public IActionResult Save(string id)
+        public IActionResult Save(string Org_id)
         {
-            //var v = _context.TBL_MS_HOSP_CODE.Where(a => a.ORG_ID == id).FirstOrDefault();
+            List<string> Active = new List<string>
+            {
+                "0","1"
+            };
+            ViewBag.Active = Active;
             return View(new TBL_MS_HOSP_CODE());
         }
 
         [HttpPost]
         public IActionResult Save(TBL_MS_HOSP_CODE hc)
         {
-            bool status = false;
-            if (ModelState.IsValid)
+
+            if (hc.ORG_ID != null)
             {
-                if (hc.ORG_ID != null)
-                {
-                    var v = _context.TBL_MS_HOSP_CODE.Where(c => c.ORG_ID == hc.ORG_ID).FirstOrDefault();
-                    if (v != null)
-                    {
-                        v.NAME_TH = hc.NAME_TH;
-                    }
-                }
-                else
-                {
-                    _context.TBL_MS_HOSP_CODE.Add(hc);
-                }
+                _context.Add(hc);
                 _context.SaveChanges();
-                status = true;
             }
-            return  Json(new { status=status});
+            return Json(new { success = true, message = "success" });
         }
     }
 }

@@ -6834,6 +6834,7 @@
     <None Include="wwwroot\bower_components\Datatables\js\jquery.dataTables.js" />
     <None Include="wwwroot\bower_components\Datatables\js\jquery.dataTables.min.js" />
     <None Include="wwwroot\bower_components\Datatables\js\jquery.js" />
+    <None Include="wwwroot\bower_components\Datatables\js\vfs_fonts.js" />
   </ItemGroup>
 
 </Project>

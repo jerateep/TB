@@ -15,7 +15,7 @@
                 <td><label> HOSP Name: </label></td>
                 <td><input type="text" id="txtname" class="form-control" /></td>
                 <td><label>Changwat: </label></td>
-                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, new { @id = "txtch", style = "width: 250px;",Multiple= "Multiple" })</td>
+                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, new { @id = "txtch", style = "width: 250px;", Multiple = "Multiple" })</td>
                 <td><input type="button" value="search" id="btnSearch" class="btn btn-success" /></td>
             </tr>
         </tbody>
@@ -72,8 +72,15 @@
 </div>
 @section Scripts{
     <script src="~/bower_components/select2/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.4.1/css/buttons.dataTables.min.css">
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/buttons.print.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
     <script>
-        var popup, oTable;
         $(document).ready(function () {
             $('#txtch').select2({
                 placeholder: 'เลือกจังหวัด',
@@ -81,16 +88,50 @@
             });
         });
         //Datatables
+        var popup, oTable;
         $(document).ready(function () {
             oTable = $('#hTable').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "orderMulti": false,
-                "dom": '<"top"i>rt<"bottom"lp><"clear">',
                 "ajax": {
                     "url": '/hcode/LoadData',
-                    "type": "POST",
-                    "datatype": "json"
+                    "datatype": "json",
+                    "type": "POST"
+                },
+                "columnDefs": [  // กำหนดลักษณะพิเสษเฉพาะสำหรับคอลัมน์ตารางที่ต้องการ
+                    {
+                        "targets": [0], // เราต้องการกำหนดคอลัมน์แรก ค่าเริ่มต้นที่ 0
+                        "orderable": false, // ให้ไม่ต้องสามารถเรียงข้อมูลได้ เพราะเป็นลำดับรายการเฉยๆ
+                    }
+                ],             // Bfrtip
+                "dom": '<"top"i>Btprt<"bottom"lp><"clear">',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+                ],
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "ไม่มีรายการข้อมูล",
+                    "info": "แสดงรายการที่ _START_ ถึง _END_ จาก _TOTAL_ รายการ",
+                    "infoEmpty": "ไม่มีรายการข้อมูล",
+                    "infoFiltered": "(กรองจากทั้งหมด _MAX_ รายการ)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "แสดง  _MENU_ รายการ",
+                    "loadingRecords": "กำลังโหลดข้อมูล...",
+                    "processing": "กำลังประมวลผล...",
+                    "search": "ค้นหา:",
+                    "zeroRecords": "ไม่พบรายการที่ค้นหา",
+                    "paginate": {
+                        "first": "หน้าแรก",
+                        "last": "หน้าสุดท้าย",
+                        "next": "ถัดไป",
+                        "previous": "ก่อนหน้า"
+                    },
+                    "aria": {
+                        "sortAscending": ": เรียงข้อมูลจากน้อยไปมาก",
+                        "sortDescending": ": เรียงข้อมูลจากมากไปน้อย"
+                    }
                 },
                 "columns": [
                     { "data": "orG_ID", "name": "orG_ID", "autowidth": true },

@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
 namespace TB.Migrations
 {
-    public partial class hosp : Migration
+    public partial class TBL_TB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
+         
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

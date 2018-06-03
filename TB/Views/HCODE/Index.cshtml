@@ -99,12 +99,6 @@
                     "datatype": "json",
                     "type": "POST"
                 },
-                "columnDefs": [  // กำหนดลักษณะพิเสษเฉพาะสำหรับคอลัมน์ตารางที่ต้องการ
-                    {
-                        "targets": [0], // เราต้องการกำหนดคอลัมน์แรก ค่าเริ่มต้นที่ 0
-                        "orderable": false, // ให้ไม่ต้องสามารถเรียงข้อมูลได้ เพราะเป็นลำดับรายการเฉยๆ
-                    }
-                ],             // Bfrtip
                 "dom": '<"top"i>Btprt<"bottom"lp><"clear">',
                 "buttons": [
                     'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
@@ -187,6 +181,7 @@
                 oTable.draw();
             });
         });
+        //
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)

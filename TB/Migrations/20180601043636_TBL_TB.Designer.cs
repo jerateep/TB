@@ -11,9 +11,10 @@ using TB.Models;
 namespace TB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20180601043636_TBL_TB")]
+    partial class TBL_TB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,8 +257,7 @@ namespace TB.Migrations
 
             modelBuilder.Entity("TB.Models.TBL_TB", b =>
                 {
-                    b.Property<decimal>("TB_ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<decimal>("TB_ID");
 
                     b.Property<string>("ABROAD_COUNTRY");
 

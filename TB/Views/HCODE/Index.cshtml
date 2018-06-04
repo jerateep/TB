@@ -10,11 +10,11 @@
     <table>
         <tbody>
             <tr>
-                <td><label> ORG_ID: </label></td>
+                <td><label> รหัสหน่วยงาน: </label></td>
                 <td><input type="text" id="txtorg_id" class="form-control" /></td>
-                <td><label> HOSP Name: </label></td>
+                <td><label> ชื่อหน่วยงาน: </label></td>
                 <td><input type="text" id="txtname" class="form-control" /></td>
-                <td><label>Changwat: </label></td>
+                <td><label>จังหวัด: </label></td>
                 <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, new { @id = "txtch", style = "width: 250px;", Multiple = "Multiple" })</td>
                 <td><input type="button" value="search" id="btnSearch" class="btn btn-success" /></td>
             </tr>
@@ -28,31 +28,31 @@
     <table id="hTable" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>ORG_ID</th>
-                <th>ORG_ID_9</th>
-                <th>orG_LEVEL</th>
-                <th>orG_TYPE</th>
-                <th>orG_TYPE_NHSO</th>
-                <th>NAME_TH</th>
-                <th>namE_EN</th>
-                <th>addr</th>
-                <th>mu</th>
-                <th>changwat</th>
-                <th>ampur</th>
-                <th>tambon</th>
-                <th>bed</th>
-                <th>department</th>
-                <th>tel</th>
+                <th>รหัสหน่วยงาน</th>
+                <th>รหัสหน่วยงาน 9 หลัก</th>
+                <th>ระดับ</th>
+                <th>รหัสประเภทหน่วยงาน</th>
+                <th>ประเภทหน่วยงาน</th>
+                <th>ชื่อหน่วยงาน</th>
+                <th>ชื่อหน่วยงาน eng</th>
+                <th>ที่อยู่</th>
+                <th>หมู่</th>
+                <th>จังหวัด</th>
+                <th>อำเภอ</th>
+                <th>ตำบล</th>
+                <th>จำนวนเตียง</th>
+                <th>สังกัด</th>
+                <th>เบอร์โทรศัพท์</th>
                 <th>fax</th>
-                <th>nhsO_ID</th>
-                <th>OPDC</th>
-                <th>phO_ID</th>
-                <th>ssO_ID</th>
+                <th>เขต</th>
+                <th>สคร</th>
+                <th>สสจ</th>
+                <th>สสอ</th>
                 <th>iS_MDR_TREAT</th>
                 <th>iS_CULTURE_TREAT</th>
                 <th>iS_DST_TREAT</th>
                 <th>iS_MOLECULAR_TREAT</th>
-                <th>status</th>
+                <th>สถานะ</th>
                 <th>latitude</th>
                 <th>longtitude</th>
                 <th>iS_CUL_SOLID</th>
@@ -94,15 +94,44 @@
                 "processing": true,
                 "serverSide": true,
                 "orderMulti": false,
+                "dom": '<"top"i>Btprt<"bottom"lp><"clear">',
+                "buttons": [
+                    {
+
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ],
+                "columnDefs": [{
+                    targets: -1,
+                    visible: false
+                }],
                 "ajax": {
                     "url": '/hcode/LoadData',
                     "datatype": "json",
                     "type": "POST"
                 },
-                "dom": '<"top"i>Btprt<"bottom"lp><"clear">',
-                "buttons": [
-                    'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
-                ],
                 "language": {
                     "decimal": "",
                     "emptyTable": "ไม่มีรายการข้อมูล",
@@ -172,7 +201,7 @@
                             return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.orG_ID + "'); >Delete</a>";
                         }
                     },
-                ]
+                ],
             });
             $('#btnSearch').click(function () {
                 oTable.columns(0).search($('#txtorg_id').val().trim());

@@ -11,8 +11,8 @@ using TB.Models;
 namespace TB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20180601043636_TBL_TB")]
-    partial class TBL_TB
+    [Migration("20180604045511_tbl_tb")]
+    partial class tbl_tb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,7 +257,10 @@ namespace TB.Migrations
 
             modelBuilder.Entity("TB.Models.TBL_TB", b =>
                 {
-                    b.Property<decimal>("TB_ID");
+                    b.Property<decimal>("TB_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("TB_ID")
+                        .HasColumnType("decimal(18, 0)");
 
                     b.Property<string>("ABROAD_COUNTRY");
 
@@ -532,6 +535,12 @@ namespace TB.Migrations
                     b.Property<decimal>("WEIGHT");
 
                     b.HasKey("TB_ID");
+
+                    b.HasIndex("DATE_REGIS")
+                        .HasName("NonClusteredIndex-20171108-140051");
+
+                    b.HasIndex("HOSP_ID", "TBNO", "PATIENT_ID")
+                        .HasName("NonClusteredIndex-20170830-095913");
 
                     b.ToTable("TBL_TB");
                 });

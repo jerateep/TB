@@ -257,7 +257,9 @@ namespace TB.Migrations
             modelBuilder.Entity("TB.Models.TBL_TB", b =>
                 {
                     b.Property<decimal>("TB_ID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("TB_ID")
+                        .HasColumnType("decimal(18, 0)");
 
                     b.Property<string>("ABROAD_COUNTRY");
 
@@ -532,6 +534,12 @@ namespace TB.Migrations
                     b.Property<decimal>("WEIGHT");
 
                     b.HasKey("TB_ID");
+
+                    b.HasIndex("DATE_REGIS")
+                        .HasName("NonClusteredIndex-20171108-140051");
+
+                    b.HasIndex("HOSP_ID", "TBNO", "PATIENT_ID")
+                        .HasName("NonClusteredIndex-20170830-095913");
 
                     b.ToTable("TBL_TB");
                 });

@@ -1,0 +1,150 @@
+﻿@*@model IEnumerable<TB.Models.TBL_MS_HOSP_CODE>*@
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "_Layout";
+}
+<link href="~/bower_components/select2/dist/css/select2.css" rel="stylesheet" />
+
+<div style="background-color:#f5f5f5; padding:20px">
+    <table>
+        <tbody>
+            <tr>
+                <td><label> รหัสหน่วยงาน: </label></td>
+                <td><input type="text" id="txtorg_id" class="form-control" /></td>
+                <td><label> ชื่อหน่วยงาน: </label></td>
+                <td><input type="text" id="txtname" class="form-control" /></td>
+                <td><label>จังหวัด: </label></td>
+                <td>@Html.DropDownList("ch", ViewBag.ch as SelectList, new { @id = "txtch", style = "width: 250px;", Multiple = "Multiple" })</td>
+                <td><input type="button" value="search" id="btnSearch" class="btn btn-success" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div style="width:100%;overflow:scroll;margin:0 auto;">
+    <table id="uTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ชื่อ</th>
+                <th>นามสกุล</th>
+                <th>เบอร์โทร</th>
+                <th>อีเมล์</th>
+                <th>รหัสหน่วยงาน</th>
+                <th>ชื่อหน่วยงาน</th>
+                <th>สคร.</th>
+                <th>สสจ.</th>
+                <th>จังหวัด</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/bower_components/select2/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.4.1/css/buttons.dataTables.min.css">
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.4.1/js/buttons.print.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#txtch').select2({
+                placeholder: 'เลือกจังหวัด',
+                allowClear: true
+            });
+        });
+        var popup, oTable;
+        //Datatables
+        $(document).ready(function () {
+            oTable = $('#uTable').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "orderMulti": false,
+                "dom": '<"top"i>Btprt<"bottom"lp><"clear">',
+                "buttons": [
+                    {
+
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ],
+                //"columnDefs": [{
+                //   targets: -1,
+                //   visible: false
+                //}],
+                "ajax": {
+                    "url": '/User/LoadData',
+                    "datatype": "json",
+                    "type": "POST"
+                },
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "ไม่มีรายการข้อมูล",
+                    "info": "แสดงรายการที่ _START_ ถึง _END_ จาก _TOTAL_ รายการ",
+                    "infoEmpty": "ไม่มีรายการข้อมูล",
+                    "infoFiltered": "(กรองจากทั้งหมด _MAX_ รายการ)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "แสดง  _MENU_ รายการ",
+                    "loadingRecords": "กำลังโหลดข้อมูล...",
+                    "processing": "กำลังประมวลผล...",
+                    "search": "ค้นหา:",
+                    "zeroRecords": "ไม่พบรายการที่ค้นหา",
+                    "paginate": {
+                        "first": "หน้าแรก",
+                        "last": "หน้าสุดท้าย",
+                        "next": "ถัดไป",
+                        "previous": "ก่อนหน้า"
+                    },
+                    "aria": {
+                        "sortAscending": ": เรียงข้อมูลจากน้อยไปมาก",
+                        "sortDescending": ": เรียงข้อมูลจากมากไปน้อย"
+                    }
+                },
+                "columns": [
+                    { "data": "fname", "name": "fname", "autowidth": true },
+                    { "data": "lname", "name": "lname", "autowidth": true },
+                    { "data": "phone", "name": "phone", "autowidth": true },
+                    { "data": "email", "name": "email", "autowidth": true },
+                    { "data": "orG_ID", "name": "orG_ID", "autowidth": true },
+                    { "data": "namE_TH", "name": "name_TH", "autowidth": true },
+                    { "data": "odpc_name", "name": "odpc_name", "autowidth": true },
+                    { "data": "pho_name", "name": "pho_name", "autowidth": true },
+                    { "data": "changwaT_NAME_TH", "name": "changwaT_NAME_TH", "autowidth": true }
+                ],
+            });
+            $('#btnSearch').click(function () {
+                oTable.columns(4).search($('#txtorg_id').val().trim());
+                oTable.columns(5).search($('#txtname').val().trim());
+                oTable.columns(8).search($('#txtch').val() || '');
+                oTable.draw();
+            });
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+    </script>
+}

@@ -25,6 +25,53 @@ namespace TB.Controllers
             return View();
         }
 
+        public IActionResult Export()
+        {
+            var data = (from c in _context.TBL_MS_HOSP_CODE
+                     join ch in _context.TBL_MS_CHANGWAT on c.CHANGWAT equals ch.CHANGWAT_ID
+                     select new
+                     {
+                         c.ORG_ID,
+                         c.ORG_ID_9,
+                         c.ORG_LEVEL,
+                         c.ORG_TYPE,
+                         c.ORG_TYPE_NHSO,
+                         c.NAME_TH,
+                         c.NAME_EN,
+                         c.ADDR,
+                         c.MU,
+                         c.CHANGWAT,
+                         ch.CHANGWAT_NAME_TH,
+                         c.AMPUR,
+                         c.TAMBON,
+                         c.BED,
+                         c.DEPARTMENT,
+                         c.TEL,
+                         c.FAX,
+                         c.NHSO_ID,
+                         c.ODPC_ID,
+                         c.PHO_ID,
+                         c.SSO_ID,
+                         c.IS_MDR_TREAT,
+                         c.IS_CULTURE_TREAT,
+                         c.IS_DST_TREAT,
+                         c.IS_MOLECULAR_TREAT,
+                         c.STATUS,
+                         c.LATITUDE,
+                         c.LOGITUDE,
+                         c.IS_CUL_SOLID,
+                         c.IS_CUL_LIQUID,
+                         c.IS_DST_SOLID,
+                         c.IS_DST_LIQUID,
+                         c.IS_MOL_LPA,
+                         c.IS_MOL_XPERT,
+                         c.IS_NHSO_ORG,
+                         c.IS_OUTOF_TBCM,
+                         c.hmain_id
+                     });
+            return Json(new { data = data });
+        }
+
         [HttpPost]
         public IActionResult LoadData()
         {

@@ -64,5 +64,6 @@ namespace TB.Models
         }
         public DbSet<TBL_REQUEST_USER_GROUP> TBL_REQUEST_USER_GROUP { get; set; }
         public DbSet<TBL_TB> TBL_TB { get; set; }
+        public DbSet<TBL_MS_USER> TBL_MS_USER { get; set; }
     }
 }

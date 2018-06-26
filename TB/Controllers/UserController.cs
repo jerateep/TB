@@ -44,27 +44,26 @@ namespace TB.Controllers
             int skip = start != null ? Convert.ToInt16(start) : 0;
             int recordsTotal = 0;
             var v = (from x in _context.TBL_MS_USER
-                     join h in _context.TBL_MS_HOSP_CODE on x.ORG_ID equals h.ORG_ID
-                     join o in _context.TBL_MS_HOSP_CODE on h.ODPC_ID equals o.ORG_ID
-                     join p in _context.TBL_MS_HOSP_CODE on h.PHO_ID equals p.ORG_ID
-                     join c in _context.TBL_MS_CHANGWAT on h.CHANGWAT equals c.CHANGWAT_ID
-                     where x.IS_DELETED != "1"
-                     select new
-                     {
-                         x.FNAME,
-                         x.LNAME,
-                         x.PHONE,
-                         x.EMAIL,
-                         x.ORG_ID,
-                         h.NAME_TH,
-                         h.ODPC_ID,
-                         odpc_name = o.NAME_TH,
-                         h.PHO_ID,
-                         pho_name = p.NAME_TH,
-                         h.CHANGWAT,
-                         c.CHANGWAT_NAME_TH
-
-                     });
+                      where x.IS_DELETED != "1"  
+                      join h in _context.TBL_MS_HOSP_CODE on x.ORG_ID equals h.ORG_ID
+                      join o in _context.TBL_MS_HOSP_CODE on h.ODPC_ID equals o.ORG_ID
+                      join p in _context.TBL_MS_HOSP_CODE on h.PHO_ID equals p.ORG_ID
+                      join c in _context.TBL_MS_CHANGWAT on h.CHANGWAT equals c.CHANGWAT_ID
+                      select new
+                      {
+                          x.FNAME,
+                          x.LNAME,
+                          x.PHONE,
+                          x.EMAIL,
+                          x.ORG_ID,
+                          h.NAME_TH,
+                          h.ODPC_ID,
+                          odpc_name = o.NAME_TH,
+                          h.PHO_ID,
+                          pho_name = p.NAME_TH,
+                          h.CHANGWAT,
+                          c.CHANGWAT_NAME_TH
+                      });
             List<string> strCh = txtch.Split(',').ToList();
             //Search
             if (!string.IsNullOrEmpty(txtOrg_ID))
